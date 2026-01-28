@@ -4,20 +4,15 @@ Aplicación fullstack desarrollada como prueba técnica, que consume la
 **PokéAPI** desde el backend y expone un endpoint optimizado para ser
 consumido por un frontend en **React + Vite**.
 
-Incluye búsqueda optimizada, paginación, caché en navegador y
+Incluye búsqueda optimizada, paginación, caché en el backend, caché en navegador y
 arquitectura limpia siguiendo buenas prácticas.
 
 ------------------------------------------------------------------------
 
-## 🚀 Demo en Producción
+## 🚀 Demo
 
--   **Frontend (Vercel):** https://TU-FRONTEND.vercel.app
--   **Backend (Render):** https://TU-BACKEND.onrender.com
--   **Endpoint principal:** `/api/pokemon`
-
-> ⚠️ Nota: El backend está desplegado en el plan gratuito de Render, por
-> lo que la primera petición puede tardar algunos segundos debido al
-> *cold start*.
+-   **Backend :** http://localhost:3001/api/pokemon
+-   **Frontend:** http://localhost:5173/
 
 ------------------------------------------------------------------------
 
@@ -26,14 +21,25 @@ arquitectura limpia siguiendo buenas prácticas.
     root/
     │
     ├── backend/
-    │   ├── index.js
-    │   ├── routes/
-    │   ├── services/
-    │   └── package.json
+    │   └── src
+    │       ├── cache/
+    │       │   └── cache.js
+    │       ├── routes/
+    │       │   └── pokemon.routes.js
+    │       ├── services/
+    │       │   └── pokeapi.service.js
+    │       ├── app.js
+    │       └── server.js
     │
     └── frontend/
         └── vite-project/
             ├── src/
+            │     ├── hooks/
+            │     │   └── useDebounce.js
+            │     ├── services/
+            │     │   └── api.js
+            │     ├── App.css
+            │     └── App.jsx
             ├── public/
             ├── vite.config.js
             └── package.json
@@ -56,17 +62,13 @@ arquitectura limpia siguiendo buenas prácticas.
 -   Vite
 -   JavaScript (ES6+)
 
-### Deploy
-
--   Render
--   Vercel
-
 ------------------------------------------------------------------------
 
 ## ✨ Funcionalidades
 
 -   🔍 Búsqueda de Pokémon
 -   📄 Paginación
+-   🧠 Caché en el backend
 -   ⚡ Debouncing para optimizar llamadas
 -   🧠 Caché en navegador
 -   🌐 API intermedia
@@ -75,9 +77,13 @@ arquitectura limpia siguiendo buenas prácticas.
 
 ## 🔌 API -- Backend
 
-### Endpoint
+### Endpoint inicial
 
-    GET /api/pokemon
+    GET http://localhost:3001/api/pokemon
+
+### Endpoint de paginación
+
+    GET http://localhost:3001/api/pokemon?&page=1&limit=20
 
 ### Query Params
 
@@ -106,6 +112,15 @@ arquitectura limpia siguiendo buenas prácticas.
 
 ------------------------------------------------------------------------
 
+## 🌐 Frontend
+
+### Endpoint inicial
+
+     http://localhost:5173/
+
+
+------------------------------------------------------------------------
+
 ## 🧪 Instalación Local
 
 ### Backend
@@ -131,7 +146,14 @@ npm run dev
 -   Backend intermedio para desacoplar el frontend
 -   Debouncing para evitar llamadas innecesarias
 -   Paginación desde backend
--   Caché en navegador
+-   Caché en navegador y backend
+-   Busqueda optimizada
+
+------------------------------------------------------------------------
+
+## 🔬 Pruebas de Integración
+
+-   https://drive.google.com/file/d/1uG4nfgyGdIPd07T4Eg4WvOLskijeLSfZ/view?usp=sharing
 
 ------------------------------------------------------------------------
 
